@@ -83,6 +83,10 @@ public class Main {
             //bx+c=0
             //x = -c/b
             if(Math.abs(b)<eps){
+                if(Math.abs(c)<eps){
+                    list.add("0.0");
+                    return list;
+                }
                 list.add("not");
             }
             else{
