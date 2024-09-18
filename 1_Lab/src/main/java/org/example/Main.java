@@ -2,6 +2,7 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -21,21 +22,21 @@ public class Main {
         System.out.println(s2);
 
         System.out.println("\n Exercise 3");
-        double a,b,c;
+        double a, b, c;
         Scanner scanner = new Scanner(System.in);
         a = scanner.nextFloat();
         b = scanner.nextFloat();
         c = scanner.nextFloat();
-        List<String> res2 = exercise_3(a,b,c);
+        List<String> res2 = exercise_3(a, b, c);
         System.out.println(res2);
 
         System.out.println("\n Exercise 4");
-        double eps = Math.pow(10,-6);
+        double eps = Math.pow(10, -6);
         double res3 = exercise_4(eps);
         System.out.println(res3);
 
         System.out.println("\n Exercise 5");
-        String s3= "dyfyd";
+        String s3 = "dyfyd";
         //System.out.println(s3);
         System.out.println(exercise_5(s3));
 
@@ -43,7 +44,7 @@ public class Main {
 
     public static List<String> exercise_1(int n) {
         List<String> list = new ArrayList<>();
-        if (n<=0){
+        if (n <= 0) {
             list.add("not");
             return list;
         }
@@ -62,70 +63,72 @@ public class Main {
         return list;
     }
 
-    public static String exercise_2(String s){
+    public static String exercise_2(String s) {
 
 
         String s2 = "";
-        for (int i = s.length()-1; i>=0;i--){
+        for (int i = s.length() - 1; i >= 0; i--) {
 
-            s2+=s.charAt(i);
+            s2 += s.charAt(i);
         }
 
         return s2;
     }
 
-    public static List<String> exercise_3(double a,double b, double c){
+    public static List<String> exercise_3(double a, double b, double c) {
         //List<Float> res = ArrayList<>();
         List<String> list = new ArrayList<>();
-        double eps = 1e-67, x;
+        double eps = Math.pow(10, -8), x;
 
-        if (Math.abs(a)<eps){
+        if (Math.abs(a) < eps) {
             //bx+c=0
             //x = -c/b
-            if(Math.abs(b)<eps){
-                if(Math.abs(c)<eps){
-                    list.add("0.0");
+            if (Math.abs(b) < eps) {
+                if (Math.abs(c) < eps) {
+                    list.add("R");
                     return list;
                 }
                 list.add("not");
-            }
-            else{
-                list.add(String.valueOf(-c/b));
+            } else {
+                list.add(String.valueOf(-c / b));
             }
             return list;
 
         }
-        double D = b*b - 4 * a * c;
+        double D = b * b - 4 * a * c;
         //System.out.println(D);
-        if (D>= eps){
-            x = (-b-(double)Math.sqrt(D)) / (2*a);
+        if (D >= eps) {
+            x = (-b - Math.sqrt(D)) / (2 * a);
             list.add(String.valueOf(x));
-            x = (-b+(double)Math.sqrt(D)) / (2*a);
+            x = (-b + Math.sqrt(D)) / (2 * a);
             list.add(String.valueOf(x));
-        }
-        else{
+        } else {
             list.add("not");
         }
         return list;
     }
 
-    public static double exercise_4(double eps){
-        double x, s=0;
+    public static double exercise_4(double eps) {
+        double x, s = 0;
         int n = 2;
-        do{
-            x = 1/(Math.pow(n,2) + n - 2);
-            s+= x;
-        }while (x<eps);
+        do {
+            x = 1 / (Math.pow(n, 2) + n - 2);
+            s += x;
+        } while (x < eps);
 
         return s;
     }
 
-    public static Boolean exercise_5(String s){
-        for(int i=0;i<=s.length()/2;i++){
-            if(s.charAt(i)!=s.charAt(s.length()-i-1)){
-                return false;
-            }
-        }
-        return true;
+    public static Boolean exercise_5(String s) {
+//        for (int i = 0; i <= s.length() / 2; i++) {
+//            if (s.charAt(i) != s.charAt(s.length() - i - 1)) {
+//                return false;
+//            }
+//        }
+//        return true;
+
+        String reversed = exercise_2(s);
+
+        return Objects.equals(reversed, s);
     }
 }

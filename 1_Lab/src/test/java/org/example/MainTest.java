@@ -48,7 +48,7 @@ class MainTest {
 
         list = Main.exercise_3(0,0,0);
         expected.clear();
-        expected.add("0.0");
+        expected.add("R");
         assertEquals(expected,list);
 
     }
@@ -63,11 +63,11 @@ class MainTest {
     @Test
     void exercise_5() {
         String s="asdfghgfdsa";
-        Boolean b = Main.exercise_5(s);
-        assertEquals(true,b);
+        boolean b = Main.exercise_5(s);
+        assertTrue(b);
 
         s = "dkssld";
         b = Main.exercise_5(s);
-        assertEquals(false,b);
+        assertFalse(b);
     }
 }
