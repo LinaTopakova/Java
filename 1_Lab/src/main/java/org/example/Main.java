@@ -114,7 +114,9 @@ public class Main {
         do {
             x = 1 / (Math.pow(n, 2) + n - 2);
             s += x;
-        } while (x < eps);
+            n++;
+            //System.out.println(x);
+        } while (x > eps);
 
         return s;
     }
