@@ -1,4 +1,6 @@
 package org.example;
+import geometry2d.*;
+import geometry3d.Cylinder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,6 +124,13 @@ public class Main {
         }
 
         System.out.println("\n Exercise 6");
+        Circle circle = new Circle(13);
+        Rectange rectange = new Rectange(11,24);
+        System.out.println(circle.toString());
+        System.out.println(rectange.toString());
+
+        Cylinder cylinder = new Cylinder(circle,37);
+
     }
 }
 
