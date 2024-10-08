@@ -1,4 +1,6 @@
 package org.example;
+
+import exceptions.*;
 import geometry2d.*;
 import geometry3d.Cylinder;
 
@@ -9,18 +11,18 @@ import java.util.Scanner;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidLength {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\n Exercise 1");
         Button button = new Button();
-        boolean flag = true;
+        int flag = 1;
         while(true) {
-            System.out.println("false - exit, true - click");
-            flag = scanner.nextBoolean();
-            if(!flag){
+            System.out.println("0 - exit, 1 - click");
+            flag = scanner.nextInt();
+            if(flag != 1){
                 break;
             }
             button.click();
@@ -28,15 +30,17 @@ public class Main {
 
         System.out.println("\n Exercise 2");
         Balance scales = new Balance();
-        int flag2 = 2, weight = 0;
-        while(flag2!=0) {
+        int weight = 0;
+        flag = 2;
+
+        while(flag!=0) {
             System.out.println("0 - exit, 1 - add to right, 2 - add to left, 3 - result");
-            flag2 = scanner.nextInt();
-            if (flag2 == 1 || flag2 == 2){
+            flag = scanner.nextInt();
+            if (flag == 1 || flag == 2){
                 System.out.println("weight: ");
                 weight=scanner.nextInt();
             }
-            switch (flag2){
+            switch (flag){
                 case 1:
                     scales.addRight(weight);
                     break;
@@ -54,9 +58,9 @@ public class Main {
         System.out.println("\n Exercise 3");
         Bell bell = new Bell();
         while (true){
-            System.out.println("false - exit, true - sound");
-            flag = scanner.nextBoolean();
-            if (!flag)
+            System.out.println("0 - exit, 1 - sound");
+            flag = scanner.nextInt();
+            if (flag != 1)
                 break;
             System.out.println(bell.getSounds());
         }
@@ -64,11 +68,11 @@ public class Main {
         System.out.println("\n Exercise 4");
         OddEvenSeparator number = new OddEvenSeparator();
         int x;
-        flag2 = 1;
-        while(flag2 != 0){
+        flag = 1;
+        while(flag != 0){
             System.out.println("0 - exit, 1 - add number, 2 - even, 3 - odd");
-            flag2 = scanner.nextInt();
-            switch (flag2) {
+            flag = scanner.nextInt();
+            switch (flag) {
                 case 1:
                     System.out.println("enter number: ");
                     x = scanner.nextInt();
@@ -87,12 +91,12 @@ public class Main {
 
         System.out.println("\n Exercise 5");
         Table table = new Table(4,5);
-        flag2 = 1;
+        flag = 1;
         int i, j, value;
-        while(flag2 != 0){
+        while(flag != 0){
             System.out.println("0 - exit, 1 - .getValue(), 2 - .setValue(), 3 - .rows(), 4 - .cols(), 5 - .toString(), 6 - . average(): ");
-            flag2 = scanner.nextInt();
-            switch (flag2) {
+            flag = scanner.nextInt();
+            switch (flag) {
                 case 1:
                     System.out.println("enter rows and cols: ");
                     i = scanner.nextInt();
@@ -124,12 +128,34 @@ public class Main {
         }
 
         System.out.println("\n Exercise 6");
-        Circle circle = new Circle(13);
-        Rectange rectange = new Rectange(11,24);
-        System.out.println(circle.toString());
-        System.out.println(rectange.toString());
+        try{
+            System.out.println("Enter radius: ");
+            int radius = scanner.nextInt();
+            Circle circle = new Circle(radius);
+            System.out.println(circle.toString());
+        } catch (InvalidRadiusValue in){
+            System.out.println(in.getMessage());
+        }
 
-        Cylinder cylinder = new Cylinder(circle,37);
+        try{
+            System.out.println("Enter length and width: ");
+            int length = scanner.nextInt();
+            int width = scanner.nextInt();
+            Rectange rectange = new Rectange(length,width);
+            System.out.println(rectange.toString());
+        } catch (InvalidLength in){
+            System.out.println(in.getMessage());
+        }
+
+        try{
+            System.out.println("Enter radius and height: ");
+            int radius = scanner.nextInt();
+            int height = scanner.nextInt();
+            Cylinder cylinder = new Cylinder(radius,height);
+            System.out.println(cylinder.toString());
+        } catch (InvalidHeight in){
+            System.out.println(in.getMessage());
+        }
 
     }
 }

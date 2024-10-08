@@ -1,12 +1,21 @@
 package geometry3d;
+import exceptions.InvalidHeight;
+import exceptions.InvalidRadiusValue;
 import geometry2d.*;
 
 public class Cylinder {
     Figure base;
     double height;
 
-    public Cylinder(Figure base, double height){
-        this.base = base;
+    public Cylinder(int radius, double height) throws InvalidHeight {
+
+        try {
+            this.base = new Circle(radius);
+        } catch (InvalidRadiusValue in){
+            System.out.println(in.getMessage());
+        }
+        if (height <= 0)
+            throw new InvalidHeight("Invalid Height!!!");
         this.height = height;
     }
 
@@ -15,6 +24,6 @@ public class Cylinder {
     }
 
     public String toString(){
-        return base.toString();
+        return "volume: " + volume();
     }
 }

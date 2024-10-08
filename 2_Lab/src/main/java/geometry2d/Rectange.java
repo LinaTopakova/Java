@@ -1,10 +1,14 @@
 package geometry2d;
 
+import exceptions.InvalidLength;
+
 public class Rectange implements Figure {
     int length;
     int width;
 
-    public Rectange(int length,int width){
+    public Rectange(int length,int width) throws InvalidLength {
+        if (length <= 0 || width <= 0)
+            throw new InvalidLength("Indalid Length!!!");
         this.length = length;
         this.width = width;
     }

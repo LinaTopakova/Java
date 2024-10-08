@@ -1,9 +1,13 @@
 package geometry2d;
 
+import exceptions.*;
+
 public class Circle implements Figure {
     int radius;
 
-    public Circle(int radius){
+    public Circle(int radius) throws InvalidRadiusValue {
+        if (radius <= 0)
+            throw new InvalidRadiusValue("Invalid Radius Value!!!");
         this.radius = radius;
     }
 
