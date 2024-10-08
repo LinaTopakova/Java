@@ -34,9 +34,9 @@ jobs:
       uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
 
     - name: Grand permition to gradle wrapper
-      working-directory: ./1_Lab, ./2_Lab
+      working-directory: ./2_Lab
       run: chmod +x ./gradlew
 
     - name: Build with Gradle Wrapper
-      working-directory: ./1_Lab, ./2_Lab
+      working-directory: ./2_Lab
       run: ./gradlew test
